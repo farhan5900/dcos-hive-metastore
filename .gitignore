@@ -1,0 +1,44 @@
+.gopath
+.gradle_cache
+*-universe-url
+
+md-to-toc.py*
+__pycache__/
+package
+
+# maven
+target/
+
+# idea
+*.i??
+.idea/
+out/
+
+# eclipse
+.classpath
+.project
+.settings/
+hive-metastore-*/bin/
+
+# gradle
+.gradle
+build/
+
+# log
+*.log
+dcos-hive-metastore-service.log.*
+
+# vim swap files
+*.swp
+
+# OS X
+.DS_Store
+
+# test
+integration/.cache/
+.cache/
+integration/env/
+
+# tools
+tools/shakedown_env
+*.pyc

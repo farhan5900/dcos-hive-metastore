@@ -1,0 +1,28 @@
+name: {{FRAMEWORK_NAME}}
+scheduler:
+  principal: {{FRAMEWORK_PRINCIPAL}}
+  user: {{FRAMEWORK_USER}}
+pods:
+  hive-metastore:
+    count: 1
+    placement: '{{{HIVE_METASTORE_PLACEMENT}}}'
+    tasks:
+      server:
+        goal: RUNNING
+        cmd: env && echo hello && sleep $SLEEP_DURATION
+        cpus: {{HIVE_METASTORE_CPUS}}
+        memory: {{HIVE_METASTORE_MEM}}
+        volume:
+          path: metastore-db
+          type: ROOT
+          size: {{HIVE_METASTORE_DISK}}
+        env:
+          SLEEP_DURATION: {{SLEEP_DURATION}}
+        kill-grace-period: {{HIVE_METASTORE_KILL_GRACE_PERIOD}}
+plans:
+  deploy:
+    strategy: serial
+    phases:
+      metastore-deploy:
+        strategy: serial
+        pod: hive-metastore
